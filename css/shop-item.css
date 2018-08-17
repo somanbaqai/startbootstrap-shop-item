@@ -5,11 +5,38 @@
  */
 
 body {
-  padding-top: 54px;
+  /* padding-top: 54px; */
 }
 
 @media (min-width: 992px) {
   body {
-    padding-top: 56px;
+    /* padding-top: 56px; */
   }
+}
+
+.margin-top {
+  margin-top: 1.5rem!important;
+}
+
+body {
+  background-color: #DBE5EB;
+  background-image: url("Page-BgTexture.jpg");
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: top left;
+}
+.margin-0px{
+  margin-top: 0px !important;
+}
+
+.secondary-bg {
+  background-color: #5c7f94;
+}
+.footer-padding {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+.card-header {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
 }
