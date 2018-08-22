@@ -1,48 +1,24 @@
 <?php
 include("dbhelper.php");
-/*
-// Show all information, defaults to INFO_ALL
-phpinfo();
-// Show just the module information.
-// phpinfo(8) yields identical results.
-phpinfo(INFO_MODULES);
-*/
+
 $_SQL_BAYANS    = "select F.id, F.title, F.filename, F.file_description, F.dlversion, F.postdate from  
 	majliseirshad_org.wp_vibh0o_download_monitor_files as F 
-WHERE F.Id IN (select download_id from majliseirshad_org.wp_vibh0o_download_monitor_relationships where taxonomy_id = 1)
-order by postDate desc LIMIT 1,50;";
-
-/* Step#1: Load configuration file */
-// $cfgElements = parse_ini_file("../secrets/config.ini");
-// if(! is_array($cfgElements)){
-//     throw new Exception("Configuration file not found");
-// }
-// /* END */
-// $_DB_CONNECTION = "dbConnection";
-// $_DB_USER       = "userName";
-// $_DB_PASSWORD   = "dbPassword";
-
-// static $conn     = NULL;
-// // Create connection
-// if(is_null($conn)){    
-//     $conn = new mysqli($cfgElements[$_DB_CONNECTION], 
-//                     $cfgElements[$_DB_USER], 
-//                     $cfgElements[$_DB_PASSWORD]);
-//     // $GLOBAL['DBCON'] = $conn;
-// }
-
-// // Check connection
-// if ($conn->connect_error) {
-//     die("Connection failed: " . $conn->connect_error);
-// } 
-
-
+WHERE F.Id IN (select download_id from majliseirshad_org.wp_vibh0o_download_monitor_relationships where taxonomy_id = ?)
+order by postDate desc LIMIT ?,?;";
 
 $db = DatabaseHelper::getInstance();
 $conn = $db->getConnection(); 
 
+
 /** Fetching records from DB */
-$result = $conn->query($_SQL_BAYANS);
+$stmt = $conn->prepare($_SQL_BAYANS);
+$param1 = 1; // category
+$param2 = 1; // from
+$param3 = 50; // to
+$stmt->bind_param("sss",$param1,$param2,$param3);
+// $result = $conn->query($_SQL_BAYANS);
+$stmt->execute();
+$result = $stmt->get_result();
 header('Content-Type: application/json');
 if ($result->num_rows > 0) {
     $rows = array();
@@ -56,6 +32,7 @@ if ($result->num_rows > 0) {
     // }
     
     print_r(json_encode($rows));
+    $stmt->close();
 }else{    
     http_response_code(404);
 }
