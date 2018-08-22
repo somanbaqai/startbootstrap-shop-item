@@ -18,6 +18,11 @@ body {
   margin-top: 1.5rem!important;
 }
 
+.margin-btm {
+  margin-bottom: 0.6rem;
+}
+
+
 body {
   background-color: #DBE5EB;
   background-image: url("Page-BgTexture.jpg");
@@ -27,6 +32,7 @@ body {
 }
 .margin-0px{
   margin-top: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 .secondary-bg {
@@ -40,3 +46,28 @@ body {
   padding-top: 0.25rem !important;
   padding-bottom: 0.25rem !important;
 }
+
+.center-align-txt{
+    text-align: center;
+    
+}
+.div-content-align{
+  float: left;
+  margin: 0px;
+}
+.content-span-txt {
+  font-size: 1.2rem;
+  padding-left: 15px;
+}
+.float-right {
+  float: right;
+}
+#share-icon {
+  padding-top: 4px;
+  padding-right: 15px;
+
+}
+.div-seprator {
+  border-left: 1px solid rgba(0,0,0,.125);
+}
+
