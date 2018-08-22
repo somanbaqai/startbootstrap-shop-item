@@ -6,14 +6,23 @@ class DatabaseHelper{
     private $_DB_CONNECTION = "dbConnection";
     private $_DB_USER       = "userName";
     private $_DB_PASSWORD   = "dbPassword";
-    private $_SQL_BAYANS    = "select F.id, F.title, F.filename, F.file_description, F.dlversion, F.postdate from  
-        majliseirshad_org.wp_vibh0o_download_monitor_files as F 
-    WHERE F.Id IN (select download_id from majliseirshad_org.wp_vibh0o_download_monitor_relationships where taxonomy_id = 1001)
-    order by postDate desc LIMIT 1,50;";
+
 
     // Constructor
 	private function __construct() {
-        this->connectDB();
+        $this->connectDB();
+        //  $cfgElements = parse_ini_file("../secrets/config.ini");
+        // if(! is_array($cfgElements)){
+        //     throw new Exception("Configuration file not found");
+        // }
+        // // Make a  db connection here
+		// $this->_connection = new mysqli($cfgElements["dbConnection"], 
+        //             $cfgElements["userName"], 
+        //             $cfgElements["dbPassword"]);	
+		// // Error handling
+		// if ($_connection->connect_error) {
+        //     die("Connection failed: " . $_connection->connect_error);
+        // } 
     }
 
     /*
@@ -33,12 +42,13 @@ class DatabaseHelper{
             throw new Exception("Configuration file not found");
         }
         // Make a  db connection here
-		$this->_connection = new new mysqli($cfgElements[$_DB_CONNECTION], 
-                    $cfgElements[$_DB_USER], 
-                    $cfgElements[$_DB_PASSWORD]);	
+        $cfgElements["dbConnection"];
+		$this->_connection = new mysqli($cfgElements["dbConnection"], 
+                    $cfgElements["userName"], 
+                    $cfgElements["dbPassword"]);	
 		// Error handling
-		if ($_connection->connect_error) {
-            die("Connection failed: " . $_connection->connect_error);
+		if ($this->_connection->connect_error) {
+            die("Connection failed: " . $this->$_connection->connect_error);
         } 
     }
 
