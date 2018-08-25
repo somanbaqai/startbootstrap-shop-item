@@ -10,22 +10,24 @@ $_SQL_BAYANS    = "SELECT
                                          download_id 
                                  FROM 
                                         majliseirshad_org.wp_vibh0o_download_monitor_relationships 
-                                WHERE taxonomy_id = ?)
+                                WHERE taxonomy_id LIKE ?)
                     ORDER BY  postDate desc LIMIT ?,?;";
 
 
 
-if(!is_null($_GET['taxId']) && !is_null($_GET['from']) && !is_null($_GET['to'])) {    
+if(is_null($_GET['from']) || is_null($_GET['to'])) {    
+    throw new Exception("Required variable not found");
+}
     /** Fetching records from DB */
 
     $db = DatabaseHelper::getInstance();
     $conn = $db->getConnection(); 
     
     $stmt = $conn->prepare($_SQL_BAYANS);
-    $taxId = $_GET['taxId']; // category
+    $taxId = (is_null($_GET['taxId']))? '%': $_GET['taxId'];// category
     $from = $_GET['from']; // from
     $to = $_GET['to']; // to
-    $stmt->bind_param("iii",$taxId,$from,$to);
+    $stmt->bind_param("sii",$taxId,$from,$to);
     // $result = $conn->query($_SQL_BAYANS);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -35,11 +37,7 @@ if(!is_null($_GET['taxId']) && !is_null($_GET['from']) && !is_null($_GET['to']))
     
         while($r = $result->fetch_assoc()){        
             $rows['result'][] = $r;
-        }
-        
-        // echo "id: " . $row["id"]. " - Title: " . $row["title"]. " " . $row["filename"]. "<br>";
-        //     while($row = $result->fetch_assoc()) {
-        // }
+        }           
         
         print_r(json_encode($rows));
         $stmt->close();
@@ -47,10 +45,7 @@ if(!is_null($_GET['taxId']) && !is_null($_GET['from']) && !is_null($_GET['to']))
         http_response_code(404);
     }
     
-}else{
-    throw new Exception("Required variable not found");
 
-}
 
 
 
