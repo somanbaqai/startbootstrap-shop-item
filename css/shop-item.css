@@ -8,10 +8,15 @@ body {
   /* padding-top: 54px; */
 }
 
-@media (min-width: 992px) {
-  body {
-    /* padding-top: 56px; */
+@media only screen and (max-width: 600px) {
+  #testAud {
+      float:none !important;
   }
+
+}
+
+#meta-text {
+  font-weight: 500
 }
 
 .margin-top {
@@ -62,6 +67,10 @@ body {
 .float-right {
   float: right;
 }
+.float-left {
+  float: left;
+}
+
 #share-icon {
   padding-top: 4px;
   padding-right: 15px;
@@ -76,7 +85,7 @@ body {
   padding-left: 0px; 
 }
 audio {
-   width: 150px;
+   width: 190px;
    display: block;
    }
 

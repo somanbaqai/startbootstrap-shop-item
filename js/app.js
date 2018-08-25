@@ -10,6 +10,20 @@ $(document).ready(function() {
         $.each(data.result,(index,item) =>{
             console.log(item.filename);
             console.log(item.title);
+
+            var htmlStr = '';
+            htmlStr += '<div class="row">';
+            htmlStr +=      '<div class="col-sm">';
+            htmlStr+=           '<p id="meta-text"  style="padding-top: 20px;">' + item.title + '</p>'; 
+            htmlStr +=      '</div>';
+            htmlStr +=      '<div class="col-sm">';
+            htmlStr +=          '<audio id="testAud" class="float-right" src="' + item.filename + '" controls></audio>';
+            htmlStr +=      '</div>';
+            htmlStr += '</div>';
+            var oHtml = $.parseHTML(htmlStr);
+            $("#bayans").append(oHtml);
+
+
         });
      
     }).fail(function (result) {
