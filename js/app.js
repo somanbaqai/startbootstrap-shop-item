@@ -14,7 +14,7 @@ $(document).ready(function () {
             $('#loading-icon').hide();
         }
     });
-    $.get("http://192.168.135.129:8000/services.php?from=1&to=10",
+    $.get("http://www.majliseirshad.org/services.php?from=1&to=10",
         function (data) { }, "json")
         .then(function (data) {
            
