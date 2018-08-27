@@ -11,18 +11,7 @@ class DatabaseHelper{
     // Constructor
 	private function __construct() {
         $this->connectDB();
-        //  $cfgElements = parse_ini_file("../secrets/config.ini");
-        // if(! is_array($cfgElements)){
-        //     throw new Exception("Configuration file not found");
-        // }
-        // // Make a  db connection here
-		// $this->_connection = new mysqli($cfgElements["dbConnection"], 
-        //             $cfgElements["userName"], 
-        //             $cfgElements["dbPassword"]);	
-		// // Error handling
-		// if ($_connection->connect_error) {
-        //     die("Connection failed: " . $_connection->connect_error);
-        // } 
+
     }
 
     /*

@@ -28,7 +28,7 @@ if(is_null($_GET['from']) || is_null($_GET['to'])) {
     $from = $_GET['from']; // from
     $to = $_GET['to']; // to
     $stmt->bind_param("sii",$taxId,$from,$to);
-    // $result = $conn->query($_SQL_BAYANS);
+    
     $stmt->execute();
     $result = $stmt->get_result();
     header('Content-Type: application/json');
