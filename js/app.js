@@ -1,9 +1,23 @@
 $(document).ready(function () {
     console.log("In ready function...");
-    $.get("http://www.majliseirshad.org/services.php?from=1&to=10",
+
+        $("#loading-icon").hide();
+ 
+
+    $.ajaxSetup({
+        beforeSend: function() {
+            // TODO: show your spinner
+            $('#loading-icon').show();
+        },
+        complete: function() {
+            // TODO: hide your spinner
+            $('#loading-icon').hide();
+        }
+    });
+    $.get("http://192.168.135.129:8000/services.php?from=1&to=10",
         function (data) { }, "json")
         .then(function (data) {
-
+           
             console.log('Response received...');
             
             $.each(data.result, (index, item) => {
@@ -22,9 +36,10 @@ $(document).ready(function () {
 
 
             });
-
+           
         }).fail(function (result) {
             console.log("API called failed....");
             console.log(result)
         })
+
 });
