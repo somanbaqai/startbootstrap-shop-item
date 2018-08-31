@@ -12,6 +12,9 @@ body {
   #testAud {
       float:none !important;
   }
+  #loading-icon{
+    padding-left: 40% !important;
+  }
 
 }
 
