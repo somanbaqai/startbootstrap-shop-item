@@ -129,3 +129,17 @@ audio {
   }
 }
 
+/* audio player CSS below */
+#bayan-player {
+  width: 100%;
+}
+
+/* play button CSS below  */ 
+.play-btn {
+  background-color: transparent;
+  border: none;
+}
+.play-btn:focus {
+  outline: none;
+}
+

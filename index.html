@@ -83,8 +83,16 @@
                   <div class="card-body ">
                 
                       <div id="bayans" class="margin-btm" >
-                            <div id="loading-icon" class="lds-ring" style="padding-left: 50%"><div></div><div></div><div></div><div></div></div>
-                        
+                            
+                        <div class="row">
+                          <div class="col-sm">
+                              <audio id="bayan-player"   src="" controls>
+                                  
+                              </audio>
+                          </div>
+                        </div>
+                        <div id="loading-icon" class="lds-ring" style="padding-left: 50%"><div></div><div></div><div></div><div></div></div>
+                    
                       
                     
         
@@ -116,7 +124,25 @@
     </footer>
 
    
+    <script>
+     function loadAudio(id){
+      
+
+      var audio = document.getElementById('bayan-player');
+     
+
+      var bayanLink = $('#' + id).attr('data-bayan-file');
+      console.log(bayanLink);
+
     
+      audio.src = bayanLink;
+      
+    
+      audio.load(); //call this to just preload the audio without playing
+      audio.play(); //call this to play the song right away
+   }
+
+    </script>
     
   </body>
 
