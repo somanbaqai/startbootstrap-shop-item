@@ -21,11 +21,11 @@ $(document).ready(function () {
                 var htmlStr = '';
                 htmlStr += '<div class="row">';
                 htmlStr += '<div class="col-sm">';
-                htmlStr += '<p id="meta-text"  style="padding-top: 20px;">' + item.title + '</p>';
+                htmlStr += '<p id="meta-text" >' + item.title + '</p>';
                 htmlStr += '</div>';
                 htmlStr += '<div class="col-sm">';
                 //htmlStr += '<audio id="testAud" class="float-right" src="' + item.filename + '" controls></audio>';
-                htmlStr += '<button data-bayan-file="' + item.filename +'" onclick="loadAudio(this.id)" id="bayan' + i + '"type="button" class="play-btn"><i class="fas fa-play"></i></button>'
+                htmlStr += '<button data-bayan-file="' + item.filename +'" onclick="loadAudio(this.id)" id="bayan' + i + '"type="button" class="play-btn float-right"><i class="fas fa-play"></i></button>'
                 htmlStr += '</div>';
                 htmlStr += '</div>';
                 var oHtml = $.parseHTML(htmlStr);

@@ -132,6 +132,7 @@ audio {
 /* audio player CSS below */
 #bayan-player {
   width: 100%;
+  padding-bottom: 20px;
 }
 
 /* play button CSS below  */ 
