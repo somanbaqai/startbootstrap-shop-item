@@ -1,17 +1,16 @@
 <?php
 include("dbhelper.php");
 
-$_SQL_BAYANS    = "SELECT 
-                        F.id, F.title, F.filename, F.file_description, F.dlversion, F.postdate
-                    FROM  
-	                    majliseirshad_org.wp_vibh0o_download_monitor_files 
-                    as F WHERE 
-                        F.Id IN (SELECT
-                                         download_id 
-                                 FROM 
-                                        majliseirshad_org.wp_vibh0o_download_monitor_relationships 
-                                WHERE taxonomy_id LIKE ?)
-                    ORDER BY  postDate desc LIMIT ?,?;";
+$_SQL_BAYANS    = "select p.id as id, p.post_title as title, p.post_content as file_description, 1 as dlversion, p.post_date as postdate 
+                    ,REPLACE(REPLACE(REPLACE(m.meta_value,'[', ''),']',''),'\"','') filename , m.meta_key
+                    from majliseirshad_org.wp_vibh0o_posts p 
+                    INNER JOIN majliseirshad_org.wp_vibh0o_posts v on p.id = v.post_parent
+                    INNER JOIN majliseirshad_org.wp_vibh0o_postmeta m ON m.post_id = v.id
+                    where p.post_type = 'dlm_download' 
+                    and p.post_status != 'auto-draft' 
+                    and m.meta_key like '%files'
+                    order by p.ID desc
+                    limit ?,?;";
 
 
 
@@ -27,7 +26,8 @@ if(is_null($_GET['from']) || is_null($_GET['to'])) {
     $taxId = (is_null($_GET['taxId']))? '%': $_GET['taxId'];// category
     $from = $_GET['from']; // from
     $to = $_GET['to']; // to
-    $stmt->bind_param("sii",$taxId,$from,$to);
+    //$stmt->bind_param("sii",$taxId,$from,$to);
+    $stmt->bind_param("ii",$from,$to);
     
     $stmt->execute();
     $result = $stmt->get_result();

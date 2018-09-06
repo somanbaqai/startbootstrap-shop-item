@@ -8,9 +8,9 @@ $(document).ready(function () {
             $('#loading-icon').hide();
         }
     });
-    console.log( "http://" + window.location.host +  "/services.php?from=1&to=10");
+    console.log( "http://" + window.location.host +  "/services.php?from=0&to=10");
  
-    $.get("http://" + window.location.host +  "/services.php?from=1&to=10",
+    $.get("http://" + window.location.host +  "/services.php?from=0&to=10",
         function (data) { }, "json")
         .then(function (data) {
            
